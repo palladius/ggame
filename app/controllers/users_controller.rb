@@ -13,4 +13,11 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  # This is just a Hall of fame!
+  def index 
+    @users = User.all # (params[:user])
+    # sort by score
+  end
+    
 end

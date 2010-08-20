@@ -4,3 +4,4 @@ log/*log
 #**~
 tmp/
 *~
+db/test.sqlite3
