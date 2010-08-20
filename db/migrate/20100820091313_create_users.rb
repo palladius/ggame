@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password_hash
       t.string :password_salt
+      t.integer :score, :default => 0  # The score for a player, initialized to ZERO 
       t.timestamps
     end
   end
