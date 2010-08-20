@@ -32,10 +32,10 @@ We need authentication and the following models:
 
 A game should have the following:
 
-- name
-- description
-- boardgame settings (i.e. 8x8, with initial disposition of pieces)
-- a GameState (position of pieces into the chessboard, cards in players hands, ...). This is obviously Game-dependant
+- name:string (unique)
+- description:text
+- active:bool
+# - boardgame settings (i.e. 8x8, with initial disposition of pieces)
 
 === Chess (Scacchi)
 
@@ -52,7 +52,16 @@ Every piece has rule movements.
 
 == Ruleset
 
-I assume rulesets for complex games should be defined in a Prolog-like style, with inferential engine, like:
+A ruleset record should have for sure:
+- game_id:integer (to contextualize where its applicable)
+- title:STRING (Not really necessary, just for ease and for documentation)
+- description:TEXT (it would be a WONDERFUL thing if the game was AUTO-documenting!)
+- preconditions:TEXT (code which returns true or false, whether the current state of chessboard matches 
+  this rule or not)
+- action:TEXT code which alters the GameState to another GameState (i.e. "move the pawn.4 of player 1 from 
+  D2 to D4 and give turn to Player 2")
+
+It would be great if rulesets for complex games were defined in a Prolog-like style, with inferential engine, like:
 
   - goal :- legal_move?
   - legal_move? :- your_turn? , move_piece
@@ -64,6 +73,9 @@ I assume rulesets for complex games should be defined in a Prolog-like style, wi
   - move_piece :- move_pawn(i)
   - move_tower(i) :- current_position(i).x == destination_position(i).x
   - move_tower(i) :- current_position(i).y == destination_position(i).y
+
+Again, the Application CODE should provide ease for writing down rules in a concise way so that we dont put a lot of unnecessary 
+repetitive code into the DB..
 
 == MatchesHistory
 
@@ -77,6 +89,21 @@ This resumes the games won:
 - description
 - date_started
 - date_ended
+
+== Match
+
+This is basically an 'instance' of a game. You can play chess Game 10 times and have 10 matches of game Chess.
+A match has a date start, date end, a final score
+
+- game_id
+- date_start
+- date_end
+- final_score
+- a GameState (position of pieces into the chessboard, cards in players hands, ...). This is obviously Game-dependant
+
+Game State is far too complex to model dynamically, so itll be implemented INTO the code itself.
+Views will be provided for HTML, TXT, PNG, SVG, ...
+
 
 ############################################################
 

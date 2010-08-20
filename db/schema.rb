@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20100820091313) do
     t.string   "password_hash"
     t.string   "password_salt"
     t.integer  "score",         :default => 0
+    t.integer  "level",         :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
