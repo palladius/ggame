@@ -1,2 +1,6 @@
 .DS_Store
 doc/app
+log/*log
+#**~
+tmp/
+*~
