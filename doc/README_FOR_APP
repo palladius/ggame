@@ -1,2 +1,69 @@
+
+= GGAME (generic game)
+
+== Specs : ALTERNATIVE ##2
+-	Consider the scenario that you’re building a social game.  The user performs different activities in the game, activities that are governed by the rules of the game.
+-	Social games are extremely iterative.  This means the rules are frequently changing.
+-	As a result, we want to keep the “business logic” of the rules separate from the application code so that they’re easier to maintain and iterate.
+-	Prototype a preliminary system that would allow developers to define game rules in code and then assert these rules in the context of a basic game.
+
+== Examples
+
+Given the specs, I assume this game can vary much over the rules while its not easy to change the 'canvas' (BoardGame, CardGame, ...). Ill assume its a turn-based game and all players are known at the start.
+Ill assume ruleset is changing, while game specs and layout (dimension of chessboard, number of cards, ...) is embedded in the code. Obviously, 
+this might be easy to change (DRY) and to clone (subclassing chaning just the wanted attributes), but its NOT in the DB.
+We need authentication and the following models:
+
+- ''Users''      (i.e. "alice", 'bob', "riccardo"). A user could have an history of won games and 
+- <b>Games</b>      (i.e. #chess, #cheques, :briscola) which defines a ruleset. Since games can vary SO MUCH (think of Chess, 
+  Magic the Gathering, Poker, ...), ONE is sufficient. Ill try to model a couple of games representable in a similar way: a Chessboard.
+- Match      (i.e. :chess game #123 between :alice and :riccardo )
+  This is an instance of a Game and will keep the <b>GameState</b> (score, current player turn, chessboard status, ...)
+- Ruleset (i.e. legal move for :Chess). According to the specs, it seems like rules should be in the DB so they can be changed dynamically
+  maybe also during the game. When a player tries to do a 'move' during a match. We need some 'static' assumptions to let a programmer inject code
+  into the DB remaining consistent, elegant and DRY. In order to do this, we should set some primitives like 'username', 'current_turn', 'is_my_turn?' 
+  and so on.
+  
+= Models
+
+== Game ==
+
+A game should have the following:
+
+- name
+- description
+- boardgame settings (i.e. 8x8, with initial disposition of pieces)
+- a GameState
+
+=== Chess (Scacchi)
+
+8x8 chessboard for 2 players, 16 pieces each (8 pawns, 2 towers, 2 knights, 2 bishop, queen, king).
+Every piece has rule movements.
+
+=== Four in a Row (Forza 4)
+
+7x6 chessboard, 2 players, 
+
+=== Rails Madness (just to invent a new one)
+
+10x10 chessboard, 2-4 players
+
+== Ruleset
+
+I assume rulesets for complex games should be defined in a Prolog-like style, with inferential engine, like:
+
+- goal :- legal_move?
+- legal_move? :- your_turn? , move_piece
+- move_piece :- move_queen
+- move_piece :- move_king
+- move_piece :- move_tower(i)
+- move_piece :- move_knight(i)
+- move_piece :- move_bishop(i)
+- move_piece :- move_pawn(i)
+- move_tower(i) :- current_position(i).x == destination_position(i).x
+- move_tower(i) :- current_position(i).y == destination_position(i).y
+
+= From original rails
+
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
