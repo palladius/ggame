@@ -3,17 +3,15 @@
 <table>
   <tr>
     <th>User</th>
-    <th>Description</th>
     <th>Score</th>
   </tr>
-  <% for game in @users %>
+  <% for user in @users %>
     <tr>
-      <td><%=h user.name %></td>
-      <td><%=h user.description %></td>
-      <td><%=h user.active %></td>
-      <td><%= link_to "Show", user %></td>
-      <td><%= link_to "Edit", edit_user_path(user) %></td>
-      <td><%= link_to "Destroy", user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%=to_html(user) %></td>
+      <td><font color='blue' ><%=h user.score %></font></td>
+      <td><%#= link_to "Show", user %></td>
+      <td><%#= link_to "Edit", edit_user_path(user) %></td>
+      <td><%#= link_to "Destroy", user, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>

@@ -16,12 +16,12 @@ Ill assume ruleset is changing, while game specs and layout (dimension of chessb
 this might be easy to change (DRY) and to clone (subclassing chaning just the wanted attributes), but its NOT in the DB.
 We need authentication and the following models:
 
-- ''Users''      (i.e. "alice", 'bob', "riccardo"). A user could have an history of won games (in a table on its own) and a score for the Hall of Fame (inside users table?).
+- <b>Users</b>      (i.e. "alice", 'bob', "riccardo"). A user could have an history of won games (in a table on its own) and a score for the Hall of Fame (inside users table?).
 - <b>Games</b>      (i.e. #chess, #cheques, :briscola) which defines a ruleset. Since games can vary SO MUCH (think of Chess, 
   Magic the Gathering, Poker, ...), ONE is sufficient. Ill try to model a couple of games representable in a similar way: a Chessboard.
-- Match      (i.e. :chess game #123 between :alice and :riccardo )
+- <b>Match</b>      (i.e. :chess game #123 between :alice and :riccardo )
   This is an instance of a Game and will keep the <b>GameState</b> (score, current player turn, chessboard status, ...)
-- Ruleset (i.e. legal move for :Chess). According to the specs, it seems like rules should be in the DB so they can be changed dynamically
+- <b>Ruleset</b> (i.e. legal move for :Chess). According to the specs, it seems like rules should be in the DB so they can be changed dynamically
   maybe also during the game. When a player tries to do a 'move' during a match. We need some 'static' assumptions to let a programmer inject code
   into the DB remaining consistent, elegant and DRY. In order to do this, we should set some primitives like 'username', 'current_turn', 'is_my_turn?' 
   and so on. The 'static' code must provide the rulesets with primitives to make the lines readable, elegant, and non-repetitive (=> DRY).
@@ -77,18 +77,20 @@ It would be great if rulesets for complex games were defined in a Prolog-like st
 Again, the Application CODE should provide ease for writing down rules in a concise way so that we dont put a lot of unnecessary 
 repetitive code into the DB..
 
-== MatchesHistory
-
-This resumes the games won:
-
-#- game_id
-- match_id
-- winner_id
-- participants (comma separated ID string list, we dont need to do join, its just for the record)
-- score
-- description
-- date_started
-- date_ended
+# == MatchesHistory
+# 
+# This resumes the games won:
+# 
+# #- game_id
+# - match_id
+# - winner_id
+# - participants (comma separated ID string list, we dont need to do join, its just for the record)
+# - score
+# - description
+# - date_started
+# - date_ended
+# 
+# PS I think this table could be homogeneized to the Match one!
 
 == Match
 
@@ -100,7 +102,13 @@ A match has a date start, date end, a final score
 - date_end
 - final_score
 - a GameState (position of pieces into the chessboard, cards in players hands, ...). This is obviously Game-dependant
-
+#- match_id
+- winner_id
+- participants (comma separated ID string list, we dont need to do join, its just for the record)
+- score
+- description
+- date_started
+- date_ended
 Game State is far too complex to model dynamically, so itll be implemented INTO the code itself.
 Views will be provided for HTML, TXT, PNG, SVG, ...
 

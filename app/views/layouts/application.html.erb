@@ -7,6 +7,23 @@
     <%= yield(:head) %>
   </head>
   <body>
+	<div id='header'>
+		<div align='center' class='menu_models' >
+		[ <%= [ User, Game ].map{|model|
+				 link_to(model.to_s.pluralize, polymorphic_path(model.to_s.tableize) )
+			}.join(' | ') %>
+		] 
+		</div>
+		<div align='right' >
+		   <% if logged_in? %>
+		     Welcome <b><%=h current_user.username %></b>! 
+		     <%= link_to "Log out", logout_path %>
+		   <% else %>
+		     <%= link_to "Sign up", signup_path %> or
+		     <%= link_to "log in", login_path %>.
+		   <% end %>
+		</div>
+	</div>
     <div id="container">
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
