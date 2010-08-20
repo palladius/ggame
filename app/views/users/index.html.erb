@@ -1,0 +1,21 @@
+<% title "Users Hall of Fame" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Description</th>
+    <th>Score</th>
+  </tr>
+  <% for game in @users %>
+    <tr>
+      <td><%=h user.name %></td>
+      <td><%=h user.description %></td>
+      <td><%=h user.active %></td>
+      <td><%= link_to "Show", user %></td>
+      <td><%= link_to "Edit", edit_user_path(user) %></td>
+      <td><%= link_to "Destroy", user, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New user", new_user_path %></p>
