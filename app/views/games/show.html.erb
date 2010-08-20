@@ -1,0 +1,20 @@
+<% title "Game" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @game.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @game.description %>
+</p>
+<p>
+  <strong>Active:</strong>
+  <%=h @game.active %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_game_path(@game) %> |
+  <%= link_to "Destroy", @game, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", games_path %>
+</p>
