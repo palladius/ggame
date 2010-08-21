@@ -1,0 +1,40 @@
+<% title "Match" %>
+
+<p>
+  <strong>Game:</strong>
+  <%=h @match.game_id %>
+</p>
+<p>
+  <strong>Date Start:</strong>
+  <%=h @match.date_start %>
+</p>
+<p>
+  <strong>Date End:</strong>
+  <%=h @match.date_end %>
+</p>
+<p>
+  <strong>Notes:</strong>
+  <%=h @match.notes %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%=h @match.title %>
+</p>
+<p>
+  <strong>Final Score:</strong>
+  <%=h @match.final_score %>
+</p>
+<p>
+  <strong>Winner:</strong>
+  <%=h @match.winner_id %>
+</p>
+<p>
+  <strong>Participants:</strong>
+  <%=h @match.participants %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_match_path(@match) %> |
+  <%= link_to "Destroy", @match, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", matches_path %>
+</p>

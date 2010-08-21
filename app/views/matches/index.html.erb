@@ -1,0 +1,31 @@
+<% title "Matches" %>
+
+<table>
+  <tr>
+    <th>Game</th>
+    <th>Date Start</th>
+    <th>Date End</th>
+    <th>Notes</th>
+    <th>Title</th>
+    <th>Final Score</th>
+    <th>Winner</th>
+    <th>Participants</th>
+  </tr>
+  <% for match in @matches %>
+    <tr>
+      <td><%=h match.game_id %></td>
+      <td><%=h match.date_start %></td>
+      <td><%=h match.date_end %></td>
+      <td><%=h match.notes %></td>
+      <td><%=h match.title %></td>
+      <td><%=h match.final_score %></td>
+      <td><%=h match.winner_id %></td>
+      <td><%=h match.participants %></td>
+      <td><%= link_to "Show", match %></td>
+      <td><%= link_to "Edit", edit_match_path(match) %></td>
+      <td><%= link_to "Destroy", match, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Match", new_match_path %></p>

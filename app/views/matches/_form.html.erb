@@ -1,0 +1,36 @@
+<% form_for @match do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :game_id %><br />
+    <%= f.text_field :game_id %>
+  </p>
+  <p>
+    <%= f.label :date_start %><br />
+    <%= f.date_select :date_start %>
+  </p>
+  <p>
+    <%= f.label :date_end %><br />
+    <%= f.date_select :date_end %>
+  </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :final_score %><br />
+    <%= f.text_field :final_score %>
+  </p>
+  <p>
+    <%= f.label :winner_id %><br />
+    <%= f.text_field :winner_id %>
+  </p>
+  <p>
+    <%= f.label :participants %><br />
+    <%= f.text_field :participants %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

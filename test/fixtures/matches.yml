@@ -1,0 +1,19 @@
+one:
+  game_id: 1
+  date_start: 2010-08-21
+  date_end: 2010-08-21
+  notes: MyText
+  title: MyString
+  final_score: 1
+  winner_id: 1
+  participants: MyString
+
+two:
+  game_id: 1
+  date_start: 2010-08-21
+  date_end: 2010-08-21
+  notes: MyText
+  title: MyString
+  final_score: 1
+  winner_id: 1
+  participants: MyString
