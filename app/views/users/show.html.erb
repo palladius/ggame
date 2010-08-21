@@ -1,0 +1,28 @@
+<% title "User #{@user}" %>
+
+<p>
+  <strong>Username:</strong>
+  <%=link_me @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%=h @user.email %>
+</p>
+<p>
+  <strong>Score:</strong>
+  <%=h @user.score %>
+</p>
+<p>
+  <strong>Level:</strong>
+  <%=h @user.level %>
+</p>
+<p>
+  <strong>Won matches:</strong>
+  <%=link_me @user.won_matches %>
+</p>
+
+<p>
+  <%= link_to "Destroy", @user, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", users_path %>
+</p>

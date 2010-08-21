@@ -9,7 +9,7 @@
   <body>
 	<div id='header'>
 		<div align='center' class='menu_models' >
-		[ <%= [ User, Game ].map{|model|
+		[ <%= [ User, Game, Match ].map{|model|
 				 link_to(model.to_s.pluralize, polymorphic_path(model.to_s.tableize) )
 			}.join(' | ') %>
 		] 

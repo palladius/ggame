@@ -12,8 +12,8 @@ Ill assume ruleset is changing, while game specs and layout (dimension of chessb
 this might be easy to change (DRY) and to clone (subclassing chaning just the wanted attributes), but its NOT in the DB.
 We need authentication and the following models:
 
-- <b>Users</b>      (i.e. "alice", 'bob', "riccardo"). A user could have an history of won games (in a table on its own) and a score for the Hall of Fame (inside users table?).
-- <b>Games</b>      (i.e. #chess, #cheques, :briscola) which defines a ruleset. Since games can vary SO MUCH (think of Chess, 
+- <b>User</b>      (i.e. "alice", 'bob', "riccardo"). A user could have an history of won games (in a table on its own) and a score for the Hall of Fame (inside users table?).
+- <b>Game</b>      (i.e. #chess, #cheques, :briscola) which defines a ruleset. Since games can vary SO MUCH (think of Chess, 
   Magic the Gathering, Poker, ...), ONE is sufficient. Ill try to model a couple of games representable in a similar way: a Chessboard.
 - <b>Match</b>      (i.e. :chess game #123 between :alice and :riccardo )
   This is an instance of a Game and will keep the <b>GameState</b> (score, current player turn, chessboard status, ...)

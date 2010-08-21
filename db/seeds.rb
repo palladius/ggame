@@ -6,6 +6,12 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 
+def fatal(str)
+  puts "FATAL: #{str}"
+  exit 1
+end
+
+puts "db/seed.rb: Start"
 
 ##### GAMES
 #Game.delete_all # uniqueness on name guarantees unicity :)
@@ -23,8 +29,8 @@ Game.create(
 )
 
 ##### USERS
-User.delete(User.find_by_username 'root') # recreate..
-User.delete(User.find_by_username 'rcarlesso') # recreate..
+User.delete(User.find_by_username 'root')     # recreate..
+User.delete(User.find_by_username 'kasparov') # recreate..
 root = User.create( 
   :username => 'root',
   :email => 'riccardo.carlesso@example.com',
@@ -34,22 +40,29 @@ root = User.create(
 )
 root.level = 2   # cant do it by create
 root.score = 4242 # ditto..
-root.save
+root.save || fatal('Couldnt create Root')
 
-author = User.create( 
-  :username => 'rcarlesso',
-  :email => 'palladius@example.com',
-  :score => 10,
-  :password => 'r1cc4rd0_P455W0R0',
+kasparov = User.create( 
+  :username => 'kasparov',
+  :email => 'kasparov@example.com',
+  :score => 6,
+  :password => 'kasparov_217gdyweh',
   :level => 1
 )
-author.level = 1   # cant do it by create
-author.score = 42  # ditto..
-author.save
-#author.save
-#puts author.errors.inspect
+kasparov.level = 1   # cant do it by create
+kasparov.score = 6  # ditto..
+kasparov.save || fatal('Couldnt create Kasparov')
 
+#### Matches (a test one)
+Match.delete(Match.find_all_by_title 'Historical Chess match!')
+Match.create(
+  :game_id => Game.find_by_name('chess').id ,
+  :notes   => "Example match between Deep Blue (root here) and Kasparov :)",
+  :title   => "Historical Chess match!",
+  :final_score => 6,
+  :winner_id => kasparov.id,
+  :creator_id => root.id,
+  :participants => [kasparov.id,root.id].join(',')
+)
 
-
-
-puts "Database Seeded!"
+puts "db/seed.rb: Database Seeded!"

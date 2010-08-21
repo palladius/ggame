@@ -2,15 +2,15 @@
 
 <p>
   <strong>Game:</strong>
-  <%=h @match.game_id %>
+  <%=link_me @match.game %>
 </p>
 <p>
   <strong>Date Start:</strong>
-  <%=h @match.date_start %>
+  <%=h @match.match_start %>
 </p>
 <p>
   <strong>Date End:</strong>
-  <%=h @match.date_end %>
+  <%=h @match.match_end %>
 </p>
 <p>
   <strong>Notes:</strong>
@@ -26,11 +26,11 @@
 </p>
 <p>
   <strong>Winner:</strong>
-  <%=h @match.winner_id %>
+  <%=link_me @match.winner %>
 </p>
 <p>
   <strong>Participants:</strong>
-  <%=h @match.participants %>
+  <%=@match.arr_participants.map{|m| link_me(m) }.join(', ') %>
 </p>
 
 <p>

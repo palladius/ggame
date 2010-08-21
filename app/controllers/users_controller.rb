@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [:index, :show, :new , :create ]
+  before_filter :login_required, :except => [:index, :new , :create ]
   
   def new
     @user = User.new
@@ -21,5 +21,10 @@ class UsersController < ApplicationController
     @users = User.all # (params[:user])
     # sort by score
   end
-    
+  
+  def show
+    #@user = User.new(params[:user])
+    @user = User.find(params[:id])
+  end
+  
 end

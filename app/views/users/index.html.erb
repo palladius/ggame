@@ -2,12 +2,14 @@
 
 <table>
   <tr>
+    <th>Id</th>
     <th>User</th>
     <th>Score</th>
   </tr>
   <% for user in @users %>
     <tr>
-      <td><%=to_html(user) %></td>
+      <td><%=h user.id %></td>
+      <td><%=link_to to_html(user),user %></td>
       <td align='right' ><font color='green' ><%=h user.score %></font></td>
       <td><%#= link_to "Show", user %></td>
       <td><%#= link_to "Edit", edit_user_path(user) %></td>

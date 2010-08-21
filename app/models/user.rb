@@ -17,10 +17,15 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
   
-  def to_s
-    "#{username} <#{email}>"
+  def to_s(opts={})
+    return "#{username} <#{email}>" if opts[:verbose]
+    return username
   end
   #alias :name :to_s
+  
+  def won_matches
+    Match.find_all_by_winner_id(id)
+  end
   
   # login can be either username or email address
   def self.authenticate(login, pass)
