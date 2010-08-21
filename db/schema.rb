@@ -9,12 +9,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100820093445) do
+ActiveRecord::Schema.define(:version => 20100821104718) do
 
   create_table "games", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.boolean  "active",      :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "matches", :force => true do |t|
+    t.integer  "game_id"
+    t.datetime "match_start"
+    t.datetime "match_end"
+    t.text     "notes"
+    t.string   "title"
+    t.integer  "final_score",  :default => 10
+    t.integer  "winner_id"
+    t.integer  "creator_id"
+    t.string   "participants"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

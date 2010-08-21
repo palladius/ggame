@@ -1,7 +1,3 @@
-  ################################################
-  # $Id$
-  ################################################
-
 = GGAME (generic game)
 
 -	Consider the scenario that you’re building a social game.  The user performs different activities in the game, activities that are governed by the rules of the game.
