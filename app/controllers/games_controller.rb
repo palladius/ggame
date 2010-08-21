@@ -1,6 +1,5 @@
 class GamesController < ApplicationController
-  
-  before_filter :login_required
+  before_filter :login_required, :except => [:index ]
   
   def index
     @games = Game.all

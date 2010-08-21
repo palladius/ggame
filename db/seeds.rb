@@ -23,13 +23,31 @@ Game.create(
 )
 
 ##### USERS
-u = User.create( 
+User.delete(User.find_by_username 'root') # recreate..
+User.delete(User.find_by_username 'rcarlesso') # recreate..
+root = User.create( 
   :username => 'root',
-  :email => 'riccardo.carlesso@gmail.com',
+  :email => 'riccardo.carlesso@example.com',
   :score => 100,
+  :password => 'rootpwd_CHANGEME',
+  :level => 2
+)
+root.level = 2   # cant do it by create
+root.score = 4242 # ditto..
+root.save
+
+author = User.create( 
+  :username => 'rcarlesso',
+  :email => 'palladius@example.com',
+  :score => 10,
+  :password => 'r1cc4rd0_P455W0R0',
   :level => 1
 )
-puts u
+author.level = 1   # cant do it by create
+author.score = 42  # ditto..
+author.save
+#author.save
+#puts author.errors.inspect
 
 
 
