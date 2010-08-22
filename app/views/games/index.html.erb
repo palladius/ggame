@@ -8,10 +8,9 @@
   </tr>
   <% for game in @games %>
     <tr>
-      <td><%=h game.name %></td>
+      <td><%=link_me game %></td>
       <td><%=h game.description %></td>
       <td><%=h game.active %></td>
-      <td><%= link_to "Show", game %></td>
       <td><%= link_to "Edit", edit_game_path(game) %></td>
       <td><%= link_to "Destroy", game, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>

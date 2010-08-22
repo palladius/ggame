@@ -9,7 +9,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20100821104718) do
+#	+ActiveRecord::Schema.define(:version => 20100822104738) do
 
   create_table "games", :force => true do |t|
     t.string   "name"

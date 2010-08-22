@@ -7,4 +7,8 @@ class Chess # < Game
   #def self.description
   #end
   
+  # class King < Piece
+  #   
+  #   end
+  #   
 end

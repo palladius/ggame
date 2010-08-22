@@ -1,7 +1,10 @@
 class Match < ActiveRecord::Base
   attr_accessible :game_id, :match_start, :match_end, :notes, :title, :final_score, :winner_id, :participants
   validates_uniqueness_of :title
-  
+  validates_presence_of :title, :message => "can't be blank"
+  validates_associated :game, :on => :create
+  validates_presence_of :game, :message => "cant be blank"
+
   belongs_to :game
   belongs_to :user # , :thru => 
   
