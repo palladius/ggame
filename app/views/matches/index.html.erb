@@ -7,17 +7,18 @@
     <th>Final Score</th>
     <th>Winner</th>
     <th>Participants</th>
+    <th>Progress State</th>
   </tr>
   <% for match in @matches %>
     <tr>
-      <td><%=h match.game %></td>
-      <td><%=h match.title %></td>
+      <td><%=link_me match.game %></td>
+      <td><%=link_me match %></td>
       <td><%=h match.final_score %></td>
       <td><%= link_to match.winner,match.winner %></td>
       <td><%= match.arr_participants.map{|u| link_to u,u }.join('; ') %></td>
-      <td><%= link_to "Show", match %></td>
+      <td><%=h match.progress_state %></td>
       <td><%= link_to "Edit", edit_match_path(match) %></td>
-      <td><%= link_to "Destroy", match, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%#= link_to "Destroy", match, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
