@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :four_in_a_rows
+
+  #map.resources :"boardgame/four_in_a_rows"
+
   map.resources :matches
   map.resources :games
   map.resources :matches
