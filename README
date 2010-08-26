@@ -11,7 +11,7 @@ See docs/README_FOR_APP for further info (or build 'rake doc:app' )
 
 = INSTALL
 
-rake doc:app
-rake db:seed
-script/server
-# point to http://localhost:3000/
+ $ rake doc:app      # create docs!
+ $ rake db:seed      # populate DB with sample data
+ $ script/server     # starts server
+ $ open http://localhost:3000/ # point to http://localhost:3000/
