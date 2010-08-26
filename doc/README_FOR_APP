@@ -73,6 +73,14 @@ It would be great if rulesets for complex games were defined in a Prolog-like st
 Again, the Application CODE should provide ease for writing down rules in a concise way so that we dont put a lot of unnecessary 
 repetitive code into the DB..
 
+''Note''. The preconditions/action idea was taken from Bestpractical's RT Ticketing System. The precondition is perl code (here ruby!) that evaluates to a boolean,
+so you can do sth as simple as: 
+  
+  rules = Rule.find_all_by_game(MyGame)
+  legal_rules = rules.select{|rule| eval(rule.preconditions) rescue false }
+  # here you can chose the move manually or also generate an automatic move based on a simple AI algorithm 
+  with an scalar eurhistics over the chessboard state!!! :-)
+  
 # == MatchesHistory
 # 
 # This resumes the games won:
