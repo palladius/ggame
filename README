@@ -1,9 +1,9 @@
-= SPECS =
+= Project Specs =
 
-•	Consider the scenario that you’re building a social game.  The user performs different activities in the game, activities that are governed by the rules of the game.
-•	Social games are extremely iterative.  This means the rules are frequently changing.
-•	As a result, we want to keep the “business logic” of the rules separate from the application code so that they’re easier to maintain and iterate.
-•	Prototype a preliminary system that would allow developers to define game rules in code and then assert these rules in the context of a basic game.
+-	Consider the scenario that you’re building a social game.  The user performs different activities in the game, activities that are governed by the rules of the game.
+-	Social games are extremely iterative.  This means the rules are frequently changing.
+-	As a result, we want to keep the “business logic” of the rules separate from the application code so that they’re easier to maintain and iterate.
+-	Prototype a preliminary system that would allow developers to define game rules in code and then assert these rules in the context of a basic game.
 
 = DOCS
 
