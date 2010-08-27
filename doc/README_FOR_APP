@@ -48,6 +48,8 @@ Every piece has rule movements.
 
 == Ruleset
 
+Note. To be renamed to '''Rule''' to match the singularity of the concepts (ruleset=rules, which is plural).
+
 A ruleset record should have for sure:
 - game_id:integer (to contextualize where its applicable)
 - title:STRING (Not really necessary, just for ease and for documentation)
